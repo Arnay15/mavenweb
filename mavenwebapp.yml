@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: my-web-app
+        image: rekha91/mavenwebapp:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8085
+# service type NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-svc
+spec:
+  selector:
+    app: web-app
+  ports:
+    - protocol: TCP
+      port: 8085
+      targetPort: 8085
+  type: NodePort
