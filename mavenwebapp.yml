@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-web-app
-        image: rekha91/mavenwebapp:latest
+        image: rekha91/mavenwebapp
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
